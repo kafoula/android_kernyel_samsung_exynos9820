@@ -55,8 +55,14 @@ jobs:
           set -e -o pipefail
           ./cruelbuild config                    \
                        model=${{ matrix.model }} \
-                       name="TheRemainingMemory"        \
+                       name="TheRemainingMemory"  \
                        toolchain=$TOOLCHAIN      \
+                       -magisk                   \
+                       +performance              \
+                       +fp_boost                 \
+                       +simple_lmk               \
+                       +io_zen                   \
+                       +io_noop                  \
                        +nohardening              \
                        +ttl                      \
                        +wireguard                \
