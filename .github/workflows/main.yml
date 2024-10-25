@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        model: [ "G970F,G973F,G975F", "N975F" ]
+        model: [ "G970F", "G973F", "G975F", "N975F" ]
 
     steps:
       - uses: actions/checkout@v3
@@ -55,9 +55,8 @@ jobs:
           set -e -o pipefail
           ./cruelbuild config                    \
                        model=${{ matrix.model }} \
-                       name="Cruel-devel"        \
+                       name="TheRemainingMemory"        \
                        toolchain=$TOOLCHAIN      \
-                       +magisk                   \
                        +nohardening              \
                        +ttl                      \
                        +wireguard                \
@@ -118,7 +117,7 @@ jobs:
         if: env.INSTALLER == 'yes'
         uses: actions/upload-artifact@v2
         with:
-          name: CruelKernel-${{ matrix.model }}
+          name: TheRemainingMemory-${{ matrix.model }}
           path: installer/*
           if-no-files-found: error
       - name: Upload Kernel Images
